@@ -101,8 +101,8 @@ mListener = new TokenListener() {
 请避免混淆一键登录SDK，在Proguard混淆文件中增加以下配置：
 
 ```java
--dontwarn class com.cmic.sso.sdk.**
--keep class com.cmic.sso.sdk.**{*;}
+-dontwarn com.cmic.cmccssolibrary.**
+-keep class com.cmic.cmccssolibrary.**{*;}
 ```
 
 <div STYLE="page-break-after: always;"></div>
