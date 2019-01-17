@@ -18,7 +18,6 @@
 jar包集成方式：
 1. 将 quick_login_android_**.jar 拷贝到应用工程的libs目录下，如没有该目录，可新建;
 2. 将sdk所需要的证书文件 serverPublicKey.pem 拷贝到项目 assets 目录下。
-3. 将sdk所需要的资源文件(anim, drawable, drawable-xxhdpi, layout, values文件，具体可参考demo工程)
 
 **第三步：开始使用移动认证SDK**
 
