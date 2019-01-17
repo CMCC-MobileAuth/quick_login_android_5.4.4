@@ -5,6 +5,7 @@
 1. **获取token和取号服务必须打开数据流量并且手机操作系统给予应用数据权限才能使用**
 2. **取号请求过程需要消耗用户少量数据流量**
 3. **认证取号服务目前支持中国移动2/3/4G和中国电信4G**
+4. **应用targetVersion为28时，需要配置允许明文传输的安全配置，sdk有http请求**
 
 ## 1.1. 开发流程
 
@@ -33,16 +34,7 @@ jar包集成方式：
    <uses‐permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 ```
 2. 配置授权登录activity
-若需要配置短信校验获取token，请参考demo中示例配置;
-开发者根据需要配置横竖屏方向: android:screenOrientation ，示列代码为 unspecified (默认值由系统选择 显示方向)
-
-```
-    <!‐‐ required ‐‐>
-    <activity android:name=".activity.SMSAuthActivity"
-                     android:configChanges="orientation|keyboardHidden|screenSize"
-                     android:screenOrientation="unspecified"
-                     android:launchMode="singleTop"/>                 
-```
+若需要配置短信校验获取token，开发者可自行编写activity进行短验获取token，具体配置操作请参考demo中示例配置;
 
 通过以上两个步骤，工程就已经配置完成了。接下来就可以在代码里使用统一认证的SDK进行开发了
 
