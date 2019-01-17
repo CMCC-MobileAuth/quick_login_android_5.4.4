@@ -64,7 +64,7 @@ AuthnHelper 是SDK的功能入口，实例化后需要初始化功能参数：
 ```
     //设置是否输出sdk日志
     mAuthnHelper.setDebugMode(true);
-    //设置sdkId和sdkKey
+    //设置sdkAppid和sdkAppkey
     mAuthnHelper.init(Constant.APP_ID, Constant.APP_KEY);
     //设置超时时间，默认8s，时间单位毫秒
     mAuthnHelper.setTimeOut(12000);
