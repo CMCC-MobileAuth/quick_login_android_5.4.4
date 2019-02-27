@@ -143,7 +143,11 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | 字段               | 类型      |含义         |
 | ------------------ | --------- |--------------------|
 | resultCode | int      |接口返回码，“103000”为成功。具体返回码见 SDK返回码|
-| desc      | boolean   |成功标识，true为成功           |
+| resultDesc | string      |返回码对应的中文描述|
+| securityphone | string      |电话号码掩码|
+| openId | string      |手机号码对应的唯一标识 |
+| loginMethod | string      |登录的方法 |
+| usetimes      | string   |预取号使用的时间，单位毫秒           |
 
 ## 2.1.3 请求示例代码
 
@@ -154,9 +158,13 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 响应示例
 
 ```java
-    {
+     {
     "resultCode": "103000",
-    "desc": "true",
+    "resultDesc": "预取号成功",
+    "securityphone": "188****4562",
+    "openId": "BcLpJvyl1GZSQffq1AHSslObqmlfNs6_XALVMNsdvozll3XufPo4",
+    "loginMethod": "umcLoginPre",
+    "usetimes": "177ms",
     }
 ```
 
