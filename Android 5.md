@@ -150,7 +150,11 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 ```
     {
     "resultCode": "103000",
-    "desc": "true",
+    "resultDesc": "预取号成功",
+    "securityphone": "188****4562",
+    "openId": "BcLpJvyl1GZSQffq1AHSslObqmlfNs6_XALVMNsdvozll3XufPo4",
+    "loginMethod": "umcLoginPre",
+    "usetimes": "177ms",
     }
 ```
 
