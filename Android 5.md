@@ -147,6 +147,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | securityphone | string      |电话号码掩码|
 | openId | string      |手机号码对应的唯一标识 |
 | loginMethod | string      |登录的方法 |
+| operatortype | string      |运营商类型：0 | 未知；1 | 移动；2 | 联通；3 | 电信 |
 | usetimes      | string   |预取号使用的时间，单位毫秒           |
 
 ## 2.1.3 请求示例代码
@@ -164,6 +165,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
     "securityphone": "188****4562",
     "openId": "BcLpJvyl1GZSQffq1AHSslObqmlfNs6_XALVMNsdvozll3XufPo4",
     "loginMethod": "umcLoginPre",
+    "operatortype": "1",
     "usetimes": "177ms",
     }
 ```
@@ -253,68 +255,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 
 无
 
-## 2.4 sim卡快捷登录（可选）
 
-## 2.4.1 方法描述
-
-如果取号失败（登录失败，这个延迟时间开发者可以控制，默认2s），开发者可以选跳转SIM快捷登录页面和短信验证界面（sdk提供调用接口，布局界面由开发者实现）;
-当用户使用快捷登录时，sim盾平台会向手机号对应手机发送指令，该手机会弹窗提示用户是否同意授权登录，选确定后，发送请求的app手机会生成token。
-
-注意：用户确认授权登录至多1分钟等待处理，否则会失败！
-
-方法调用逻辑
-
-![](image/2.4.png)
-
-原型
-
-```java
-    public void simQuickLogin( int delayTime, String phoneNum,  TokenListener listener);
-```
-
-## 2.4.2 参数说明
-
-请求参数
-
-| 参数        | 类型             |说明         |
-| ------------| ---------------- |--------------------|
-| delayTime    | int              |指定超时时间       |
-| phoneNum    | String              |输入授权的手机号       |
-| listener    | TokenListener    |TokenListener为回调监听器，是一个java接口，需要调用者自己实现；TokenListener是接口中的认证登录token回调接口，OnGetTokenComplete是该接口中唯一的抽象方法，即void OnGetTokenComplete(JSONObject  jsonobj)  |
-
-响应参数
-
-OnGetTokenComplete的参数JSONObject，含义如下：
-
-| 字段       | 类型      |含义         |
-| -----------| ---------|--------------------|
-| resultCode | int       |接口返回码，“103000”为成功。具体返回码见 SDK返回码|
-| authType  | Int   |登录类型 |
-| authTypeDes  | String   |登录类型中文描述 |
-| selectSim  | String   |手机sim卡槽标识 |
-| securityphone  | String   |手机加密号码 |
-| openId  | String   |用户身份唯一标识（参数需在开放平台勾选相关能力后开放，如果勾选了一键登录能力，使用本方法时，不返回OpenID） |
-| token  | String   |成功返回:临时凭证，token有效期2min，一次有效，同一用户（手机号）10分钟内获取token且未使用的数量不超过30个 |
-
-## 2.4.3 示例
-
-请求示例代码
-
-```java
-    mAuthnHelper.simQuickLogin(60000,mPhoneNum, mListener);
-```
-
-响应示例代码
-
-```java
-    {
-    "resultCode": "103000",
-    "authType": "8",
-    "authTypeDes": "sim快捷登录",
-    "openId": "003JI1Jg1rmApSg6yG0ydUgLWZ4Bnx0rb4wtWLtyDRc0WAWoAUmE",
-    "token": "STsid0000001512438403572hQSEygBwiYc9fIw0vExdI4X3GMkI5UVw",
-    }
-```
 
 
 
@@ -538,6 +479,8 @@ b.短信验证码登录
 | 200043 | 获取不到btid      |
 | 200050 | EOF异常      |
 | 200072 | CA认证失败      |
+| 200082 | 不支持的认证方式      |
+| 200083 | 检测到hook风险      |
 
 
 ## 4.2 获取手机号码接口返回码
@@ -584,15 +527,11 @@ a.在数据流量环境下，SDK可以正常从数据网关取号；
 
 b.在wifi+数据流量环境下，SDK会调用方法强制将当前的wifi通道切换到数据流量通道，再通过数据网关正常取号（此过程大概会消耗用户1-2KB流量）；
 
-c.在纯wifi环境下，SDK无法取号，将跳转到 短信上行 （Android，如果显式登录时传递了
-AuthnHelper.AUTH_TYPE_SMS参数）或 短信验证码 （如果Android，如果显式登录时传递了
-AuthnHelper.AUTH_TYPE_DYNAMIC_SMS参数；iOS，短信验证码开关设为NO）进行校验。
+c.在纯wifi环境下，SDK无法取号，可以使用短信验证码进行校验。
 
 ## 5.2 SDK支持三网运营商么？
 
     一键登录SDK支持三网，但是由于联通接口问题，目前IOS版SDK无法获取联通用户的手机号码；
-
-    本机号码校验SDK仅支持中国移动用户的手机号码校验
     
  ## 5.3 OPPO终端网络问题
     
