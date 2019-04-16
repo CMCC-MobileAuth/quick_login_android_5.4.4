@@ -147,7 +147,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | securityphone | string      |电话号码掩码|
 | openId | string      |手机号码对应的唯一标识 |
 | loginMethod | string      |登录的方法 |
-| operatortype | string      |运营商类型：0 | 未知；1 | 移动；2 | 联通；3 | 电信 |
+| operatortype | string      |运营商类型：0 未知；1 移动；2 联通；3 电信 |
 | usetimes      | string   |预取号使用的时间，单位毫秒           |
 
 ## 2.1.3 请求示例代码
