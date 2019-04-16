@@ -141,6 +141,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | securityphone | string      |电话号码掩码|
 | openId | string      |手机号码对应的唯一标识 |
 | loginMethod | string      |登录的方法 |
+| operatortype | string      |运营商类型：0 未知；1 移动；2 联通；3 电信 |
 | usetimes      | string   |预取号使用的时间，单位毫秒           |
 
 ## 2.1.3 请求示例代码
@@ -158,6 +159,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
     "securityphone": "188****4562",
     "openId": "BcLpJvyl1GZSQffq1AHSslObqmlfNs6_XALVMNsdvozll3XufPo4",
     "loginMethod": "umcLoginPre",
+    "operatortype": "1",
     "usetimes": "177ms",
     }
 ```
@@ -531,6 +533,8 @@ b.短信验证码登录
 | 200043 | 获取不到btid      |
 | 200050 | EOF异常      |
 | 200072 | CA认证失败      |
+| 200082 | 不支持的认证方式      |
+| 200083 | 检测到hook风险      |
 
 
 ## 4.2 获取手机号码接口返回码
@@ -577,15 +581,11 @@ a.在数据流量环境下，SDK可以正常从数据网关取号；
 
 b.在wifi+数据流量环境下，SDK会调用方法强制将当前的wifi通道切换到数据流量通道，再通过数据网关正常取号（此过程大概会消耗用户1-2KB流量）；
 
-c.在纯wifi环境下，SDK无法取号，将跳转到 短信上行 （Android，如果显式登录时传递了
-AuthnHelper.AUTH_TYPE_SMS参数）或 短信验证码 （如果Android，如果显式登录时传递了
-AuthnHelper.AUTH_TYPE_DYNAMIC_SMS参数；iOS，短信验证码开关设为NO）进行校验。
+c.在纯wifi环境下，SDK无法取号，可以使用短信验证码进行校验。
 
 ## 5.2 SDK支持三网运营商么？
 
     一键登录SDK支持三网，但是由于联通接口问题，目前IOS版SDK无法获取联通用户的手机号码；
-
-    本机号码校验SDK仅支持中国移动用户的手机号码校验
     
  ## 5.3 OPPO终端网络问题
     
