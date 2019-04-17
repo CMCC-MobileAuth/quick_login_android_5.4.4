@@ -217,6 +217,8 @@ OnGetTokenComplete的参数JSONObject，含义如下：
     "resultCode": "103000",
     "authType": "2",
     "authTypeDes": "网关鉴权",
+    "selectSim":"1",
+    "securityphone": "188****4562",
     "openId": "003JI1Jg1rmApSg6yG0ydUgLWZ4Bnx0rb4wtWLtyDRc0WAWoAUmE",
     "token": "STsid0000001512438403572hQSEygBwiYc9fIw0vExdI4X3GMkI5UVw",
     }
