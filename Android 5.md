@@ -176,7 +176,7 @@ openID，应用服务端凭token向SDK服务端请求校验。
 原型
 
 ```
-    public void getTokenImp(final String authType, final TokenListener listener);
+    public void getTokenImp(String authType, TokenListener listener);
 ```
 
 ## 2.2.2 参数说明
@@ -221,10 +221,112 @@ OnGetTokenComplete的参数JSONObject，含义如下：
     "token": "STsid0000001512438403572hQSEygBwiYc9fIw0vExdI4X3GMkI5UVw",
     }
 ```
-
-## 2.3 设置取号超时
+## 2.3 获取短信验证码
 
 ## 2.3.1 方法描述
+
+该方法用于短信验证码登录时，通过输入手机号码来获取对应的短信验证码
+
+原型
+
+```
+    public void sendSMS(String phoneNum, TokenListener listener);
+```
+
+## 2.3.2 参数说明
+
+请求参数
+
+| 参数        | 类型             |说明         |
+| ------------| ---------------- |--------------------|
+| phoneNum    | String              |手机号码        |
+| listener    | TokenListener    |TokenListener为回调监听器，是一个java接口，需要调用者自己实现；TokenListener是接口中的认证登录token回调接口，OnGetTokenComplete是该接口中唯一的抽象方法，即void OnGetTokenComplete(JSONObject  jsonobj)  |
+
+响应参数
+
+OnGetTokenComplete的参数JSONObject，含义如下：
+
+| 字段       | 类型      |含义         |
+| -----------| ---------|--------------------|
+| resultCode | String       |接口返回码，“103000”为成功。具体返回码见 SDK返回码|
+| resultDesc | String   |返回结果描述 |
+
+## 2.2.3 示例
+
+请求示例代码
+
+```
+    mAuthnHelper.sendSMS("13416112345", mListener);
+```
+
+响应示例代码
+
+```
+    {
+    "resultCode": "103000",
+    "resultDesc": "success"    
+    }
+```
+## 2.4 短信验证码登录
+
+## 2.4.1 方法描述
+
+该方法用于短信验证码登录，用户应先调用获取短信验证码接口，等待手机接收到短信验证码，然后再调用此方法将短信验证码和手机号码作为参数传进来，即可完成短信验证码的登录。
+
+原型
+
+```
+    public void getTokenSms(String phoneNum, String authCode, TokenListener listener);
+```
+
+## 2.4.2 参数说明
+
+请求参数
+
+| 参数        | 类型             |说明         |
+| ------------| ---------------- |--------------------|
+| phoneNum    | String              |手机号码        |
+| authCode    | String              |验证码        |
+| listener    | TokenListener    |TokenListener为回调监听器，是一个java接口，需要调用者自己实现；TokenListener是接口中的认证登录token回调接口，OnGetTokenComplete是该接口中唯一的抽象方法，即void OnGetTokenComplete(JSONObject  jsonobj)  |
+
+响应参数
+
+OnGetTokenComplete的参数JSONObject，含义如下：
+
+| 字段       | 类型      |含义         |
+| -----------| ---------|--------------------|
+| resultCode | String       |接口返回码，“103000”为成功。具体返回码见 SDK返回码|
+| authType  | String   |登录类型 |
+| authTypeDes  | String   |登录类型中文描述 |
+| selectSim  | String   |手机sim卡槽标识 |
+| openId  | String   |用户身份唯一标识（参数需在开放平台勾选相关能力后开放，如果勾选了一键登录能力，使用本方法时，不返回OpenID） |
+| token  | String   |成功返回:临时凭证，token有效期2min，一次有效，同一用户（手机号）10分钟内获取token且未使用的数量不超过30个 |
+
+## 2.4.3 示例
+
+请求示例代码
+
+```
+    mAuthnHelper.sendSMS("13416112345","1234" mListener);
+```
+
+响应示例代码
+
+```
+    {
+    "resultCode": "103000",
+    "authType": "7",
+    "authTypeDes": "短信验证码",
+    "selectSim":"1",
+    "openId": "TddPLEIu1bG5jaPLfc1IxuOqDnZJa7dXhAnIcUOG_sqymDFoBowA",
+    "token": "STsid0000001512438403572hQSEygBwiYc9fIw0vExdI4X3GMkI5UVw"
+    }
+```
+
+
+## 2.5 设置取号超时
+
+## 2.5.1 方法描述
 
 设置取号超时时间，默认为8秒，应用在预取号、显式登录、隐式登录阶段时，如果需要更改超时时间，可使用该
 方法配置。
@@ -234,7 +336,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 ```
     public void setTimeOut(int timeOut)
 ```
-## 2.3.2 参数说明
+## 2.5.2 参数说明
 
 请求参数
 
@@ -245,7 +347,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 响应参数
 
 无
-## 2.3.3 示例
+## 2.5.3 示例
 
 请求示例代码
 
@@ -256,16 +358,16 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 
 无
 
-## 2.4 清除中间件缓存信息
+## 2.6 清除中间件缓存信息
 
-## 2.4.1 方法描述
+## 2.6.1 方法描述
 
 该方法用于清除中间件缓存信息，当用户不想使用中间件信息进行登录的时候，可以使用该方法将中间件信息清除，然后再进行登录操作。中间件清除后，用户再次登录时，将走网关/短信逻辑重新取号。
 
 ```
     public void clearChache()
 ```
-## 2.4.2 参数说明
+## 2.6.2 参数说明
 
 请求参数
 
@@ -274,7 +376,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 响应参数
 
 无
-## 2.4.3 示例
+## 2.6.3 示例
 
 请求示例代码
 
@@ -285,16 +387,16 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 
 无
 
-## 2.5 获取SDK版本号
+## 2.7 获取SDK版本号
 
-## 2.5.1 方法描述
+## 2.7.1 方法描述
 
 供接入方区分SDK的版本号，便于反馈SDK的相关信息。
 
 ```
     public void getCoreSdkVersion()
 ```
-## 2.5.2 参数说明
+## 2.7.2 参数说明
 
 请求参数
 
@@ -305,6 +407,17 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | 字段               | 类型      |含义         |
 | ------------------ | --------- |--------------------|
 | sdkVersion | String      |SDK的版本号 |
+
+## 2.7.3 示例
+
+请求示例代码
+
+```
+    String sdkVersion = mAuthnHelper.getCoreSdkVersion();
+```
+响应示例代码
+
+无
 
 
 ## 3 平台接口说明
