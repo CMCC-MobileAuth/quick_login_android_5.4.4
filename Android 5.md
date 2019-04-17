@@ -101,11 +101,11 @@ mListener = new TokenListener() {
 -keep class com.cmic.cmccssolibrary.**{*;}
 ```
 
-##1.3. 如何使用单点登录
+### 1.3. 如何使用单点登录
 
 业务A在使用单点登录到业务B时，需要先使用隐式登录/短信验证码登录获取token，再将token传递到业务B，由业务B带着token去换取业务A使用者的用户手机号码，完成单点登录流程。
 
-<div STYLE="page-break-after: always;"></div>
+
 
 ## 2.  SDK方法说明
 
@@ -270,7 +270,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
     "resultDesc": "success"    
     }
 ```
-## 2.4 短信验证码登录
+## 2.4 短信验证码登录（可选）
 
 ## 2.4.1 方法描述
 
