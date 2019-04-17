@@ -253,6 +253,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
     mAuthnHelper.setTimeOut(12000);
 ```
 响应示例代码
+
 无
 
 ## 2.4 清除中间件缓存信息
@@ -281,6 +282,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
     mAuthnHelper.clearChache();
 ```
 响应示例代码
+
 无
 
 ## 2.5 获取SDK版本号
