@@ -31,7 +31,7 @@
 
 ### 1.2.1. 统一认证登录流程
 
-![19](media/15342300903677/19.png)
+![](image/auth.png)
 
 
 由流程图可知，业务客户端集成SDK后只需要完成2步集成实现登录
@@ -272,7 +272,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 ```
     public void getCoreSdkVersion()
 ```
-## 2.3.2 参数说明
+## 2.5.2 参数说明
 
 请求参数
 
