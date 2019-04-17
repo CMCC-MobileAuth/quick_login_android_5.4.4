@@ -199,7 +199,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | authTypeDes  | String   |登录类型中文描述 |
 | selectSim  | String   |手机sim卡槽标识 |
 | securityphone  | String   |电话号码掩码 |
-| openId  | String   |用户身份唯一标识（参数需在开放平台勾选相关能力后开放，如果勾选了一键登录能力，使用本方法时，不返回OpenID） |
+| openId  | String   |用户身份唯一标识 |
 | token  | String   |成功返回:临时凭证，token有效期2min，一次有效，同一用户（手机号）10分钟内获取token且未使用的数量不超过30个 |
 
 ## 2.2.3 示例
@@ -299,7 +299,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | authType  | String   |登录类型 |
 | authTypeDes  | String   |登录类型中文描述 |
 | selectSim  | String   |手机sim卡槽标识 |
-| openId  | String   |用户身份唯一标识（参数需在开放平台勾选相关能力后开放，如果勾选了一键登录能力，使用本方法时，不返回OpenID） |
+| openId  | String   |用户身份唯一标识 |
 | token  | String   |成功返回:临时凭证，token有效期2min，一次有效，同一用户（手机号）10分钟内获取token且未使用的数量不超过30个 |
 
 ## 2.4.3 示例
@@ -622,7 +622,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | authTypeDes  | String   |登录类型中文描述 |
 | selectSim  | String   |手机sim卡槽标识 |
 | securityphone  | String   |手机加密号码 |
-| openId  | String   |用户身份唯一标识（参数需在开放平台勾选相关能力后开放，如果勾选了一键登录能力，使用本方法时，不返回OpenID） |
+| openId  | String   |用户身份唯一标识 |
 | token  | String   |成功返回:临时凭证，token有效期2min，一次有效，同一用户（手机号）10分钟内获取token且未使用的数量不超过30个 |
 
 ## 3.2.2 请求示例代码
