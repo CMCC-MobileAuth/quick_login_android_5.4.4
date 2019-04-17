@@ -229,6 +229,8 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 设置取号超时时间，默认为8秒，应用在预取号、显式登录、隐式登录阶段时，如果需要更改超时时间，可使用该
 方法配置。
 
+原型
+
 ```
     public void setTimeOut(int timeOut)
 ```
@@ -242,6 +244,15 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 
 响应参数
 
+无
+## 2.3.3 示例
+
+请求示例代码
+
+```
+    mAuthnHelper.setTimeOut(12000);
+```
+响应示例代码
 无
 
 ## 2.4 清除中间件缓存信息
@@ -261,6 +272,15 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 
 响应参数
 
+无
+## 2.4.3 示例
+
+请求示例代码
+
+```
+    mAuthnHelper.clearChache();
+```
+响应示例代码
 无
 
 ## 2.5 获取SDK版本号
