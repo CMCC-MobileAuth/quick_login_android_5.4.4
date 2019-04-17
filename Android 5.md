@@ -119,7 +119,7 @@ mListener = new TokenListener() {
 原型
 
 ```
-public void umcLoginPre(int umcLoginPreTimeOut, final TokenListener listener)
+public void umcLoginPre(int umcLoginPreTimeOut, TokenListener listener)
 ```
 
 ## 2.1.2 参数说明
