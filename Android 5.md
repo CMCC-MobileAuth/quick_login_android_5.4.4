@@ -171,8 +171,8 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 本方法目前只能用于token校验功能。开发者通过隐式登录方法，无授权弹窗，可获取到token和
 openID，应用服务端凭token向SDK服务端请求校验。
 注：隐式登录返回的token用宇校验用户信息。
-
 注意：隐式登录前，开发者需提前申请 READ_PHONE_STATE 权限，否则会失败！
+说明：目前AndroidQ无法获取sim卡信息，所以在AndroidQ我们无法判断用户是否换卡，用户换卡我们也无法清楚缓存。
 
 原型
 
