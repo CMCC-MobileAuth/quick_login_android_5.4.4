@@ -6,7 +6,7 @@
 ## 1.1. 环境配置
 
 1. 将 quick_login_android_**.jar 拷贝到应用工程的libs目录下，如没有该目录，可新建;
-2. 将sdk所需要的证书文件 serverPublicKey.pem 拷贝到项目 assets 目录下。
+2. 将jniLibs拷贝到应用工程的scr/main目录下，如果没有该目录，可新建；
 
 **[1] AndroidManifest.xml设置**
 
@@ -18,6 +18,15 @@
    <uses‐permission android:name="android.permission.ACCESS_WIFI_STATE" />
    <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <uses‐permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+```
+
+```
+   <provider
+            android:name="com.cmic.sso.sdk.utils.CMICProvider"
+            android:authorities="com.android.peter.provider"
+            android:process=":cmicprovider"
+            android:exported="true">
+   </provider>
 ```
 2. 配置授权登录activity
 若需要配置短信校验获取token，开发者可自行编写activity进行短验获取token，具体配置操作请参考demo中示例配置;
